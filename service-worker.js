@@ -66,6 +66,7 @@ function isNetworkFirst(url) {
 }
 
 // Network-First: try the network, cache the response, fall back to cache.
+// Cached responses get an X-From-SW-Cache header so the page can tell the difference.
 function networkFirst(request) {
   return fetch(request)
     .then((response) => {
@@ -74,7 +75,18 @@ function networkFirst(request) {
       caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
       return response;
     })
-    .catch(() => caches.match(request));
+    .catch(() =>
+      caches.match(request).then((cached) => {
+        if (!cached) return cached;
+        const headers = new Headers(cached.headers);
+        headers.set("X-From-SW-Cache", "true");
+        return new Response(cached.body, {
+          status: cached.status,
+          statusText: cached.statusText,
+          headers: headers,
+        });
+      }),
+    );
 }
 
 // Cache-First: serve from cache, fall back to network.

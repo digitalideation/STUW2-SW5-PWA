@@ -36,11 +36,7 @@
         <a href="https://freepublicapis.com" class="inline-link"
           >freepublicapis.com</a
         >
-        — cached so it works offline too. Also check out
-        <a href="https://whatpwacando.today" class="inline-link"
-          >whatpwacando.today</a
-        >
-        to play around with what PWAs can do!
+        — cached so it works offline too.
       </p>
 
       <div class="card" id="api-status-card">
@@ -63,11 +59,18 @@
       async function loadApis() {
         try {
           const res = await fetch(API_URL);
+          const fromCache = res.headers.get("X-From-SW-Cache") === "true";
           const apis = await res.json();
           renderApis(apis);
-          apiStatusEl.textContent =
-            "Loaded " + apis.length + " APIs from the network.";
-          apiStatusEl.classList.add("ok");
+          if (fromCache) {
+            apiStatusEl.textContent =
+              "Loaded " + apis.length + " APIs from cache (offline).";
+            apiStatusEl.classList.add("no");
+          } else {
+            apiStatusEl.textContent =
+              "Loaded " + apis.length + " APIs from the network.";
+            apiStatusEl.classList.add("ok");
+          }
         } catch (err) {
           console.warn("Network fetch failed, trying cache…", err);
           apiStatusEl.textContent =

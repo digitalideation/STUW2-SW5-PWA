@@ -83,6 +83,15 @@ Key fields:
 
 ### `service-worker.js`
 
+A service worker is an event-driven script that the browser runs in the
+background, separate from the web page. It acts as a programmable proxy between
+the app, the browser, and the network — intercepting requests and deciding how
+to respond. Because it runs in a worker context it has no DOM access, is fully
+asynchronous, and **requires HTTPS** (or `localhost`).
+
+For a deep dive see the
+[MDN Service Worker API docs](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API).
+
 The service worker has three lifecycle events:
 
 | Event        | When it fires                                                    | What we do                                        |
@@ -130,23 +139,23 @@ as cards. Here's the flow:
   Page loads
        │
        ▼
-  fetch(API_URL)  ──────────────────────────────────┐
-       │                                             │
-       │  (service worker intercepts)                │
-       ▼                                             │
-  Network available?                                 │
-       │                                             │
-   ┌───┴───┐                                         │
-  yes      no                                        │
-   │        │                                        │
-   ▼        ▼                                        │
-  Fetch   Return cached                              │
-  from    response (from                             │
-  network last visit)                                │
-   │                                                 │
-   ├─▶ Cache the fresh response for next time        │
-   │                                                 │
-   ▼                                                 ▼
+  fetch(API_URL)
+       │
+       │  (service worker intercepts)
+       ▼
+  Network available?
+       │
+   ┌───┴───┐
+  yes      no
+   │        │
+   ▼        ▼
+  Fetch   Return cached
+  from    response (from
+  network last visit)
+   │
+   ├─▶ Cache the fresh response for next time
+   │
+   ▼
   Page renders the JSON as cards
 ```
 
