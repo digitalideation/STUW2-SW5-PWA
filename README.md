@@ -1,5 +1,8 @@
 # Simple PWA — Progressive Web App Demo
 
+> **Live demo:** [pwa.nickschnee.ch](https://pwa.nickschnee.ch/)  
+> **What can PWAs do?** [whatpwacando.today](https://whatpwacando.today)
+
 ## What is a PWA?
 
 A **Progressive Web App (PWA)** is a regular website that can behave like a native
