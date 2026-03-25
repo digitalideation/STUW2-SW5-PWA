@@ -4,7 +4,7 @@
 
 // Bump this version string whenever you change any cached file.
 // That triggers the "install" event again so the new files get cached.
-const CACHE_NAME = "simple-pwa-v3";
+const CACHE_NAME = "simple-pwa-v4";
 
 // Files to cache so the app works offline (the "app shell").
 const FILES_TO_CACHE = [
