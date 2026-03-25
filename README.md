@@ -289,11 +289,15 @@ Live Server_.
 
 ## Summary: minimum requirements for a PWA
 
-| Requirement                               | Why                                        |
-| ----------------------------------------- | ------------------------------------------ |
-| Served over **HTTPS** (or localhost)      | Service workers only run on secure origins |
-| A **`manifest.json`** linked from HTML    | Tells the browser the app is installable   |
-| At least one **icon** (192×192 px)        | Needed for the home screen                 |
-| A **service worker** that handles `fetch` | Provides offline capability                |
+| Requirement                            | Why                                      | Required? |
+| -------------------------------------- | ---------------------------------------- | --------- |
+| Served over **HTTPS** (or localhost)   | Browsers require a secure origin         | Yes       |
+| A **`manifest.json`** linked from HTML | Tells the browser the app is installable | Yes       |
+| At least one **icon** (192×192 px)     | Needed for the home screen               | Yes       |
+| A **service worker**                   | Enables offline support & caching        | No*       |
 
-That's it — with these four things any website becomes a PWA.
+*A service worker is **not** strictly required for a PWA to be installable —
+HTTPS + a valid manifest is enough. However, without a service worker the app
+won't work offline, which is one of the main benefits of a PWA. Chromium-based
+browsers used to require a service worker with a `fetch` handler for the install
+prompt, but that requirement has been relaxed.
