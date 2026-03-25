@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- PWA: link to the web app manifest -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- PWA: theme colour shown in the browser toolbar / OS task-switcher -->
+    <meta name="theme-color" content="#4a90d9" />
+
+    <!-- PWA: iOS-specific meta tags (Safari doesn't fully read manifest.json yet) -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Simple PWA" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+
+    <title>APIs — Simple PWA</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="apis.html" class="active">APIs</a>
+      <a href="about.html">About</a>
+    </nav>
+
+    <main>
+      <h1>Public APIs</h1>
+      <p>
+        Fetched from
+        <a href="https://freepublicapis.com" class="inline-link"
+          >freepublicapis.com</a
+        >
+        — cached so it works offline too. Also check out
+        <a href="https://whatpwacando.today" class="inline-link"
+          >whatpwacando.today</a
+        >
+        to play around with what PWAs can do!
+      </p>
+
+      <div class="card" id="api-status-card">
+        <p class="status" id="api-status">Loading APIs…</p>
+        <p class="offline-note" id="offline-note" hidden>
+          You are offline — showing cached data.
+        </p>
+      </div>
+
+      <div id="api-list"></div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+      const API_URL =
+        "https://www.freepublicapis.com/api/apis?limit=10&sort=best";
+      const listEl = document.getElementById("api-list");
+      const apiStatusEl = document.getElementById("api-status");
+
+      async function loadApis() {
+        try {
+          const res = await fetch(API_URL);
+          const apis = await res.json();
+          renderApis(apis);
+          apiStatusEl.textContent =
+            "Loaded " + apis.length + " APIs from the network.";
+          apiStatusEl.classList.add("ok");
+        } catch (err) {
+          console.warn("Network fetch failed, trying cache…", err);
+          apiStatusEl.textContent =
+            "Showing cached data (network unavailable).";
+          apiStatusEl.classList.add("no");
+        }
+      }
+
+      function renderApis(apis) {
+        listEl.innerHTML = "";
+        apis.forEach((api) => {
+          const card = document.createElement("div");
+          card.className = "card api-card";
+          card.innerHTML =
+            "<h2>" +
+            (api.emoji || "") +
+            " " +
+            escapeHtml(api.title) +
+            "</h2>" +
+            "<p>" +
+            escapeHtml(api.description) +
+            "</p>" +
+            '<div class="api-meta">' +
+            (api.health != null
+              ? "<span>Health: " + api.health + "%</span>"
+              : "") +
+            (api.popularity != null
+              ? "<span>Popularity: " + api.popularity + "</span>"
+              : "") +
+            "</div>";
+          listEl.appendChild(card);
+        });
+      }
+
+      function escapeHtml(str) {
+        if (!str) return "";
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      loadApis();
+    </script>
+  </body>
+</html>

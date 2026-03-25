@@ -1,0 +1,21 @@
+{
+  "name": "Simple PWA Demo",
+  "short_name": "SimplePWA",
+  "description": "The simplest possible Progressive Web App for learning purposes.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90d9",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

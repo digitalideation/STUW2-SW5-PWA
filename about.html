@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA: link to the web app manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- PWA: theme colour shown in the browser toolbar / OS task-switcher -->
+  <meta name="theme-color" content="#4a90d9">
+
+  <!-- PWA: iOS-specific meta tags (Safari doesn't fully read manifest.json yet) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Simple PWA">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>About — Simple PWA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="apis.html">APIs</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+
+  <main>
+    <h1>About this app</h1>
+    <p>This is a second page to demonstrate that navigation works offline too.</p>
+
+    <div class="card">
+      <h2>How does offline navigation work?</h2>
+      <p>
+        The service worker caches all three pages (<code>index.html</code>,
+        <code>apis.html</code>, <code>about.html</code>) when it installs. When
+        you click a link the browser makes a normal HTTP request, but the service
+        worker intercepts it and responds with the cached copy — no network needed.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>What is a PWA?</h2>
+      <p>
+        A Progressive Web App is a regular website enhanced with a
+        <strong>manifest</strong> (so it can be installed) and a
+        <strong>service worker</strong> (so it works offline). That's really all
+        there is to it.
+      </p>
+    </div>
+
+    <p class="offline-note" id="offline-note" hidden>You are offline — this page still works!</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

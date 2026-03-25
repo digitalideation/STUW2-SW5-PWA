@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PWA: link to the web app manifest -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- PWA: theme colour shown in the browser toolbar / OS task-switcher -->
+  <meta name="theme-color" content="#4a90d9">
+
+  <!-- PWA: iOS-specific meta tags (Safari doesn't fully read manifest.json yet) -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Simple PWA">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <title>Simple PWA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="apis.html">APIs</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <main>
+    <h1>Simple PWA</h1>
+    <p>A minimal Progressive Web App you can install and use offline.</p>
+
+    <!-- Install button — hidden until the browser fires beforeinstallprompt or app is already installed -->
+    <button id="install-btn" hidden>Install this app</button>
+
+    <div class="card">
+      <h2>Status</h2>
+      <p class="status" id="status">Checking service worker support…</p>
+      <p class="offline-note" id="offline-note" hidden>You are offline — this page still works!</p>
+    </div>
+
+    <div class="card">
+      <h2>Try it</h2>
+      <ol>
+        <li>Click <strong>Install this app</strong> above (or use the browser's install icon).</li>
+        <li>Navigate to the <a href="about.html">About</a> page.</li>
+        <li>Turn off your network and reload — both pages still work.</li>
+      </ol>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

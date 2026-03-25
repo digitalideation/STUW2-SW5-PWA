@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  background: #f0ead6; /* eggshell */
+  color: #2c2c2c;
+  line-height: 1.6;
+}
+
+/* ── Navigation ───────────────────────────── */
+
+nav {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #d6d0bc;
+}
+
+nav a {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.95rem;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+nav a:hover {
+  color: #2c2c2c;
+}
+
+nav a.active {
+  color: #2c2c2c;
+  border-bottom-color: #2c2c2c;
+}
+
+/* ── Main content ─────────────────────────── */
+
+main {
+  max-width: 38rem;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+main > p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+/* ── Cards ────────────────────────────────── */
+
+.card {
+  background: #fff;
+  border: 1px solid #d6d0bc;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.card p,
+.card ol {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.card ol {
+  padding-left: 1.25rem;
+}
+
+.card ol li {
+  margin-bottom: 0.3rem;
+}
+
+.card a {
+  color: #4a90d9;
+}
+
+.card code {
+  background: #f0ead6;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* ── Install button ───────────────────────── */
+
+#install-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #fff;
+  background: #2c2c2c;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#install-btn:hover:not(:disabled) {
+  background: #444;
+}
+
+#install-btn:disabled {
+  background: #aaa;
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* ── Status / offline badge ───────────────── */
+
+.status {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.status.ok {
+  color: #2e7d32;
+}
+
+.status.no {
+  color: #c62828;
+}
+
+.offline-note {
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  background: #fff3cd;
+  border: 1px solid #eed888;
+  border-radius: 6px;
+  color: #665d1e;
+}
+
+/* ── Inline links (outside cards) ─────────── */
+
+.inline-link {
+  color: #4a90d9;
+}
+
+/* ── API cards ────────────────────────────── */
+
+.api-card h2 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+
+.api-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.6rem;
+}
+
+.api-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.api-meta a {
+  color: #4a90d9;
+  text-decoration: none;
+}
+
+.api-meta a:hover {
+  text-decoration: underline;
+}
